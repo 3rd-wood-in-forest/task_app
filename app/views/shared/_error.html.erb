@@ -1,0 +1,8 @@
+<% if flash[:danger] %>
+  <p class="flash-danger"><%= flash[:danger] %></p>
+  <% @post.errors.full_messages.each do |message| %>
+    <ul>
+      <li><%= message %></li>
+    </ul>
+  <% end %>
+<% end %>
