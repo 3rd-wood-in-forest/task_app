@@ -1,0 +1,44 @@
+<div class="posts-html">
+  <h2>スケジュール新規作成</h2>
+    <%= render "shared/error" %>
+
+  <%= form_for @post do |f| %>
+  <table class="table-new">
+    <tr>
+      <th><%= f.label :title ,"タイトル" %></th>
+      <td class="input-position"><%= f.text_field :title, class: "input-width input-height" %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :start_date ,"開始日" %></th>
+      <td class="input-position">
+        <%= f.text_field :start_date, type: "date", class: "input-width input-height" %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :last_date ,"終了日" %></th>
+      <td class="input-position">
+        <%= f.text_field :last_date, type: "date", class: "input-width input-height" %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :all_day ,"終日" %></th>
+      <td class="all_day-position">
+        <%= f.text_field :all_day, type: "checkbox" %>
+        <p>終日の場合はテェックを入れます</p>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :memo_contents ,"スケジュールメモ" %></th>
+      <td class="memo">
+        <%= f.text_area :memo_contents, class: "input-width memo" %>
+      </td>
+    </tr>
+  </table>
+
+  <ul class="register">
+    <li><%= f.submit "スケジュールを新規登録する。" %></li>
+    <li><%= link_to "スケジュール一覧に戻る。", @post[:posts] %></li>
+  </ul>
+
+  <% end %>
+</div>

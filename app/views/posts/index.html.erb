@@ -1,0 +1,46 @@
+<div class="posts-html">
+  <h2>スケジュール一覧</h2>
+
+  <%= render "shared/success" %>
+
+  <table class="table-index">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>タイトル</th>
+        <th>開始日</th>
+        <th>終了日</th>
+        <th>終日</th>
+        <th>スケジュール更新日時</th>
+        <th>確認</th>
+        <th>編集</th>
+        <th>削除</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.id %></td>
+        <td><%= post.title %></td>
+        <td><%= post.start_date.strftime('%Y年%m月%d日') %></td>
+        <td><%= post.last_date.strftime('%Y年%m月%d日') %></td>
+        <% if post.all_day == "on" %>　　<!-- 終日の表示の仕方 -->
+          <td><%= post.all_day = "○" %></td>
+        <% else %>
+          <td><%= post.all_day = "" %></td>
+        <% end %>
+          <!-- config/initializers/time_formats.rbから -->
+        <td><%= post.updated_at.to_s(:datetime_jp) %></td>
+        <td><%= link_to "確認", post %></td>
+        <td><%= link_to "編集", [:edit, post] %></td>
+        <td><%= link_to "削除", post, method: :delete, data: {confirm: "本当に削除しますか？"} %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="to-new">
+    <%= link_to "スケジュール新規登録", :new_post %>
+  </div>
+</div>

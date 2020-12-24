@@ -10,6 +10,17 @@
   </head>
 
   <body>
+    <% require "date"; %>
+    <% thisDate = Date.today %>
+    <header>
+      <h3>Ruby on Rails スケジュール管理アプリ</h3>
+    </header>
+
     <%= yield %>
+
+    <footer>
+      <%= "現在の日時：#{thisDate.year}年#{thisDate.month}月#{thisDate.day}日" %>
+      <p class="sum">スケジュール合計：</p><%= render "shared/countRecord" %>
+    </footer>
   </body>
 </html>

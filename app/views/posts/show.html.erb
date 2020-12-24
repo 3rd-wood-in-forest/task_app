@@ -1,0 +1,36 @@
+<div class="posts-html">
+  <h2>スケジュール詳細</h2>
+  <table class="table-show">
+    <tr>
+      <th>タイトル</th>
+      <td><%= @post.title %></td>
+    </tr>
+    <tr>
+      <th>開始日</th>
+      <td><%= @post.start_date.strftime('%Y年%m月%d日') %></td>
+    </tr>
+    <tr>
+      <th>投稿日時</th>
+      <!-- config/initializers/time_formats.rbから -->
+      <td><%= @post.updated_at.to_s(:date_jp) %></td>
+    </tr>
+    <tr>
+      <th>終日</th>
+      <% if @post.all_day == "on" %>　　<!-- 終日の表示の仕方 -->
+        <td><%= @post.all_day = "○" %></td>
+      <% else %>
+        <td><%= @post.all_day = "" %></td>
+      <% end %>
+    </tr>
+    <tr class="memo-show-size">
+      <th>スケジュールメモ</th>
+      <td><strong><%= @post.memo_contents %></strong></td>
+    </tr>
+  </table>
+
+  <ul class="link">
+    <li><%= link_to "スケジュール一覧に戻る", :posts %></li>
+    <li><%= link_to "スケジュールを編集する", [:edit_post] %></li>
+    <li><%= link_to "スケジュールを削除", @post, method: :delete, data: {confirm: "本当に削除しますか？"} %></li>
+  </ul>
+</div>
